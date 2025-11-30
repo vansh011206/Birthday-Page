@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A magical birthday experience for Sweta">
+    <title>Happy Birthday Sweta ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Intro Animation -->
+    <div id="intro" class="intro" role="dialog" aria-label="Birthday animation intro">
+        <div class="gift-box">
+            <div class="gift-lid"></div>
+            <div class="gift-body"></div>
+            <div class="gift-ribbon-v"></div>
+            <div class="gift-ribbon-h"></div>
+            <div class="gift-bow"></div>
+        </div>
+        <div class="intro-sparkles"></div>
+    </div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles" aria-hidden="true"></canvas>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements" aria-hidden="true">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Header -->
+        <header>
+            <h1 class="main-title" id="main-title">
+                <span class="title-word">Happy</span>
+                <span class="title-word">Birthday</span>
+                <span class="title-word title-name">Sweta</span>
+            </h1>
+        </header>
+
+        <!-- Music Toggle -->
+        <button id="music-toggle" class="music-toggle" aria-label="Toggle birthday music" aria-pressed="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+            <span class="music-status">Play Music</span>
+        </button>
+
+        <!-- Message Carousel -->
+        <section class="messages-section" aria-label="Birthday messages">
+            <h2 class="section-title">Special Messages for You</h2>
+            <div class="carousel-container">
+                <button class="carousel-btn carousel-prev" aria-label="Previous message">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="carousel-track">
+                    <div class="message-card active">
+                        <svg class="card-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <ellipse cx="20" cy="30" rx="8" ry="10" fill="#ff6b9d" opacity="0.3"/>
+                            <ellipse cx="20" cy="20" rx="10" ry="12" fill="#ff6b9d"/>
+                            <path d="M20 8 L16 15 L20 35 L24 15 Z" fill="#d946a6"/>
+                        </svg>
+                        <h3>To an Amazing Soul</h3>
+                        <p>You Literally lights up my life. May this year bring you endless joy and beautiful moments.</p>
+                    </div>
+                    <div class="message-card">
+                        <svg class="card-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="15" r="5" fill="#fbbf24"/>
+                            <path d="M20 20 Q15 25 20 35 Q25 25 20 20" fill="#f59e0b"/>
+                            <rect x="19" y="8" width="2" height="5" fill="#fbbf24"/>
+                        </svg>
+                        <h3>Shine Bright</h3>
+                        <p>Like a candle that never dims, your spirit inspires everyone around you. Keep shining, Bro!</p>
+                    </div>
+                    <div class="message-card">
+                        <svg class="card-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 10 L12 25 L20 23 L28 25 Z" fill="#ec4899"/>
+                            <ellipse cx="20" cy="28" rx="6" ry="3" fill="#ec4899" opacity="0.5"/>
+                        </svg>
+                        <h3>Beautiful Journey</h3>
+                        <p>Every moment with you is a gift for me . I just love to be with you</p>
+                    </div>
+                    <div class="message-card">
+                        <svg class="card-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="15" cy="15" r="3" fill="#fbbf24"/>
+                            <circle cx="25" cy="12" r="2" fill="#f59e0b"/>
+                            <circle cx="20" cy="25" r="4" fill="#fbbf24"/>
+                            <circle cx="28" cy="22" r="2.5" fill="#f59e0b"/>
+                            <path d="M10 30 Q20 28 30 30" stroke="#fbbf24" stroke-width="2" fill="none"/>
+                        </svg>
+                        <h3>Celebrate You</h3>
+                        <p>Today we celebrate the incredible person you are. Thank you for being you, Sweta. Happy Birthday!</p>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-next" aria-label="Next message">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div class="carousel-dots" role="tablist" aria-label="Message navigation"></div>
+        </section>
+
+        <!-- Mini Game -->
+        <section class="game-section" aria-label="Birthday game">
+            <h2 class="section-title">Pop the Balloons!</h2>
+            <div class="game-container">
+                <div class="game-score">
+                    <span>Score: <strong id="game-score">0</strong></span>
+                    <button id="game-reset" class="game-reset-btn" aria-label="Reset game">Reset</button>
+                </div>
+                <div id="game-area" class="game-area"></div>
+                <div id="game-win" class="game-win-message" role="alert" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- Photo Collage -->
+        <section class="collage-section" aria-label="Photo memories">
+            <h2 class="section-title">Beautiful Moments</h2>
+            <p class="collage-note">Yeh Rhi kuch Yaadein</p>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="assets/photo1.jpeg" alt="Memory 1" loading="lazy">
+                </div>
+                <div class="photo-item">
+                    <img src="assets/photo2.jpeg" alt="Memory 2" loading="lazy">
+                </div>
+                <div class="photo-item">
+                    <img src="assets/photo3.jpeg" alt="Memory 3" loading="lazy">
+                </div>
+                <div class="photo-item">
+                    <img src="assets/photo5.jpeg" alt="Memory 4" loading="lazy">
+                </div>
+                <div class="photo-item">
+                    <img src="assets/photo4.jpeg" alt="Memory 5" loading="lazy">
+                </div>
+                <div class="photo-item">
+                    <img src="assets/photo6.jpeg" alt="Memory 6" loading="lazy">
+                </div>
+            </div>
+            <p class="collage-note">Mujhe lagta nhi inke alawa apni Memories hn..💔</p>
+
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p class="footer-text">Made with <span class="heart-beat">❤️</span> for Sweta</p>
+        </footer>
+    </main>
+
+    <!-- Audio -->
+    <audio id="bg-music" loop preload="none">
+        <source src="assets/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>
