@@ -3,15 +3,747 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A magical birthday experience for Sweta">
+    <meta name="description" content="A magical birthday experience for Shweta">
     <title>Happy Birthday Sweta ✨</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <!-- Google Fonts - Ek hi line mein sab load ho jayenge -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Merienda:wght@300..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Bubblegum+Sans&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-lavender: #e9d5ff;
+    --color-pink: #fbbf24;
+    --color-purple: #7c3aed;
+    --color-deep-purple: #4c1d95;
+    --color-gold: #fbbf24;
+    --color-neon-gold: #fde047;
+    --color-white: #ffffff;
+    --color-text: #f3e8ff;
+    --font-heading: 'Great Vibes', cursive;
+    --font-body: 'Poppins', sans-serif;
+    --ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: linear-gradient(135deg, #1e1b4b 0%, #581c87 50%, #9333ea 100%);
+    color: var(--color-text);
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================
+   INTRO ANIMATION
+   ============================================ */
+.intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e1b4b 0%, #581c87 100%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.gift-box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+}
+
+.gift-body {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 120px;
+    background: linear-gradient(135deg, #ec4899 0%, #d946a6 100%);
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.gift-lid {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 40px;
+    background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform-origin: bottom center;
+}
+
+.gift-ribbon-v {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+    z-index: 1;
+}
+
+.gift-ribbon-h {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+    z-index: 1;
+}
+
+.gift-bow {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #fde047 0%, #fbbf24 100%);
+    border-radius: 50%;
+    box-shadow: 0 5px 20px rgba(251, 191, 36, 0.6);
+    z-index: 2;
+}
+
+.gift-bow::before,
+.gift-bow::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #fbbf24;
+    border-radius: 50% 50% 0 50%;
+    top: 10px;
+}
+
+.gift-bow::before {
+    left: -30px;
+    transform: rotate(-45deg);
+}
+
+.gift-bow::after {
+    right: -30px;
+    transform: rotate(45deg);
+}
+
+.intro-sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* ============================================
+   PARTICLE CANVAS
+   ============================================ */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+/* ============================================
+   FLOATING ELEMENTS
+   ============================================ */
+.floating-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.7;
+    will-change: transform;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 32px;
+    background: linear-gradient(135deg, #ff6b9d 0%, #ec4899 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+.heart::before {
+    left: 10px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.balloon {
+    position: absolute;
+    width: 50px;
+    height: 60px;
+    background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.6;
+    will-change: transform;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid #6d28d9;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+#main-content {
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+header {
+    text-align: center;
+    margin: 4rem 0 3rem;
+}
+
+.main-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.5),
+                 0 0 40px rgba(251, 191, 36, 0.3),
+                 0 0 60px rgba(251, 191, 36, 0.2);
+}
+
+.title-word {
+    display: inline-block;
+    margin: 0 0.2em;
+    color: var(--color-white);
+}
+
+.title-name {
+    color: var(--color-neon-gold);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(251, 191, 36, 0.5),
+                     0 0 40px rgba(251, 191, 36, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(251, 191, 36, 0.8),
+                     0 0 60px rgba(251, 191, 36, 0.5),
+                     0 0 90px rgba(251, 191, 36, 0.3);
+    }
+}
+
+/* ============================================
+   MUSIC TOGGLE
+   ============================================ */
+.music-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    background: rgba(139, 92, 246, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(251, 191, 36, 0.5);
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s var(--ease-smooth);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.music-toggle:hover {
+    background: rgba(139, 92, 246, 0.5);
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(251, 191, 36, 0.4);
+}
+
+.music-toggle:focus {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+}
+
+.music-toggle svg {
+    transition: transform 0.3s var(--ease-smooth);
+}
+
+.music-toggle.playing svg {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@media (max-width: 768px) {
+    .music-toggle {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+    }
+    .music-status {
+        display: none;
+    }
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+section {
+    margin: 4rem 0;
+}
+
+.section-title {
+   font-family: "Bubblegum Sans", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--color-neon-gold);
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+}
+
+/* ============================================
+   MESSAGE CAROUSEL
+   ============================================ */
+.messages-section {
+    position: relative;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.carousel-track {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    min-height: 300px;
+}
+
+.message-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(139, 92, 246, 0.2);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(251, 191, 36, 0.3);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-smooth);
+}
+
+.message-card.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.card-icon {
+    margin: 0 auto 1.5rem;
+    display: block;
+    filter: drop-shadow(0 4px 10px rgba(251, 191, 36, 0.3));
+}
+
+.message-card h3 {
+    font-family: "Balsamiq Sans", sans-serif;
+    font-size: 2rem;
+    color: var(--color-neon-gold);
+    margin-bottom: 1rem;
+}
+
+.message-card p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-lavender);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(139, 92, 246, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(251, 191, 36, 0.5);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all 0.3s var(--ease-smooth);
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: rgba(139, 92, 246, 0.5);
+    border-color: var(--color-gold);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn:focus {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+}
+
+.carousel-prev {
+    left: 0;
+}
+
+.carousel-next {
+    right: 0;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(251, 191, 36, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-smooth);
+    padding: 0;
+}
+
+.carousel-dot:hover {
+    background: rgba(251, 191, 36, 0.6);
+    transform: scale(1.2);
+}
+
+.carousel-dot:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+}
+
+.carousel-dot.active {
+    background: var(--color-gold);
+    transform: scale(1.3);
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        padding: 0 2.5rem;
+    }
+    .message-card {
+        padding: 2rem 1.5rem;
+    }
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ============================================
+   GAME SECTION
+   ============================================ */
+.game-section {
+    background: rgba(139, 92, 246, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(251, 191, 36, 0.2);
+    border-radius: 30px;
+    padding: 3rem 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.game-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.game-score {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.game-reset-btn {
+    background: rgba(236, 72, 153, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(251, 191, 36, 0.5);
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.game-reset-btn:hover {
+    background: rgba(236, 72, 153, 0.5);
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.game-reset-btn:focus {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+}
+
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: rgba(30, 27, 75, 0.5);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(251, 191, 36, 0.2);
+}
+
+.game-balloon {
+    position: absolute;
+    width: 60px;
+    height: 72px;
+    cursor: pointer;
+    transition: transform 0.2s var(--ease-smooth);
+    will-change: transform;
+}
+
+.game-balloon:hover {
+    transform: scale(1.1);
+}
+
+.game-balloon svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.game-win-message {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(251, 191, 36, 0.3));
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--color-gold);
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-neon-gold);
+    display: none;
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+}
+
+.game-win-message.show {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .game-area {
+        height: 300px;
+    }
+    .game-balloon {
+        width: 50px;
+        height: 60px;
+    }
+}
+
+/* ============================================
+   PHOTO COLLAGE
+   ============================================ */
+.collage-section {
+    text-align: center;
+}
+
+.collage-note {
+    font-size: 1.55rem;
+    color: rgba(251, 191, 36, 0.7);
+    margin-bottom: 2rem;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.photo-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(139, 92, 246, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(251, 191, 36, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s var(--ease-smooth);
+    will-change: transform;
+}
+
+.photo-item:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4);
+    border-color: var(--color-gold);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s var(--ease-smooth);}
+.photo-item:hover img {
+transform: scale(1.1);
+}
+@media (max-width: 768px) {
+.photo-grid {
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 1rem;
+}
+}/* ============================================
+FOOTER
+============================================ */
+footer {
+text-align: center;
+padding: 3rem 1rem;
+margin-top: 4rem;
+}.footer-text {
+font-size: 1.25rem;
+font-weight: 600;
+color: var(--color-lavender);
+}.heart-beat {
+display: inline-block;
+color: var(--color-gold);
+animation: heartbeat 1.5s ease-in-out infinite;
+text-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+}@keyframes heartbeat {
+0%, 100% {
+transform: scale(1);
+}
+10%, 30% {
+transform: scale(1.1);
+}
+20%, 40% {
+transform: scale(1.2);
+}
+}/* ============================================
+FOCUS & ACCESSIBILITY
+============================================ */
+*:focus-visible {
+outline: 3px solid var(--color-gold);
+outline-offset: 2px;
+}.visually-hidden {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+border: 0;
+}
+    </style>
 </head>
 
 <body>
@@ -78,7 +810,7 @@
                             <path d="M20 8 L16 15 L20 35 L24 15 Z" fill="#d946a6"/>
                         </svg>
                         <h3>To an Amazing Soul</h3>
-                        <p>You Literally lights up my life. May this year bring you endless joy and beautiful moments.</p>
+                        <p>You Literally lights up My life. May this year bring you endless joy and beautiful moments.</p>
                     </div>
                     <div class="message-card">
                         <svg class="card-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -95,7 +827,7 @@
                             <ellipse cx="20" cy="28" rx="6" ry="3" fill="#ec4899" opacity="0.5"/>
                         </svg>
                         <h3>Beautiful Journey</h3>
-                        <p>Every moment with you is a gift for me . I just love to be with you</p>
+                        <p>Every moment with you is a gift.I just love to be with you</p>
                     </div>
                     <div class="message-card">
                         <svg class="card-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -106,7 +838,7 @@
                             <path d="M10 30 Q20 28 30 30" stroke="#fbbf24" stroke-width="2" fill="none"/>
                         </svg>
                         <h3>Celebrate You</h3>
-                        <p>Today we celebrate the incredible person you are. Thank you for being you, Sweta. Happy Birthday!</p>
+                        <p>Today we celebrate the incredible person you are. Thank you for being you, Sweta. Happy Birthday Babeee!</p>
                     </div>
                 </div>
                 <button class="carousel-btn carousel-next" aria-label="Next message">
@@ -134,7 +866,7 @@
         <!-- Photo Collage -->
         <section class="collage-section" aria-label="Photo memories">
             <h2 class="section-title">Beautiful Moments</h2>
-            <p class="collage-note">Yeh Rhi kuch Yaadein</p>
+            <p class="collage-note">Yeh Rhin Kuch Yaadein!!!</p>
             <div class="photo-grid">
                 <div class="photo-item">
                     <img src="assets/photo1.jpeg" alt="Memory 1" loading="lazy">
@@ -146,17 +878,16 @@
                     <img src="assets/photo3.jpeg" alt="Memory 3" loading="lazy">
                 </div>
                 <div class="photo-item">
-                    <img src="assets/photo5.jpeg" alt="Memory 4" loading="lazy">
+                    <img src="assets/photo4.jpeg" alt="Memory 4" loading="lazy">
                 </div>
                 <div class="photo-item">
-                    <img src="assets/photo4.jpeg" alt="Memory 5" loading="lazy">
+                    <img src="assets/photo5.jpeg" alt="Memory 5" loading="lazy">
                 </div>
                 <div class="photo-item">
                     <img src="assets/photo6.jpeg" alt="Memory 6" loading="lazy">
                 </div>
             </div>
-            <p class="collage-note">Mujhe lagta nhi inke alawa apni Memories hn..💔</p>
-
+              <p class="collage-note">Iske Alawa or koi Memories bhi ni h Legit💔</p>
         </section>
 
         <!-- Footer -->
@@ -171,6 +902,551 @@
     </audio>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
- <script src="app.js"></script>
+    <script>
+        
+(function() {
+    'use strict';
+
+    const DEBUG = window.location.hash === '#debug';
+    
+    if (DEBUG) {
+        console.log('=== BIRTHDAY APP DEBUG MODE ===');
+    }
+
+    const state = {
+        currentSlide: 0,
+        totalSlides: 4,
+        gameScore: 0,
+        gameWon: false,
+        musicPlaying: false,
+        particlesActive: true,
+        animationsActive: !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    };
+
+    const selectors = {
+        intro: document.getElementById('intro'),
+        mainContent: document.getElementById('main-content'),
+        musicToggle: document.getElementById('music-toggle'),
+        musicStatus: document.querySelector('.music-status'),
+        bgMusic: document.getElementById('bg-music'),
+        carouselTrack: document.querySelector('.carousel-track'),
+        carouselPrev: document.querySelector('.carousel-prev'),
+        carouselNext: document.querySelector('.carousel-next'),
+        carouselDots: document.querySelector('.carousel-dots'),
+        messageCards: document.querySelectorAll('.message-card'),
+        gameArea: document.getElementById('game-area'),
+        gameScore: document.getElementById('game-score'),
+        gameReset: document.getElementById('game-reset'),
+        gameWin: document.getElementById('game-win'),
+        particlesCanvas: document.getElementById('particles'),
+        floatingElements: document.querySelectorAll('.heart, .balloon')
+    };
+
+    if (DEBUG) {
+        const missing = Object.entries(selectors).filter(([key, val]) => {
+            if (key === 'messageCards' || key === 'floatingElements') {
+                return val.length === 0;
+            }
+            return !val;
+        });
+        if (missing.length > 0) {
+            console.warn('Missing selectors:', missing.map(([key]) => key));
+        } else {
+            console.log('All selectors loaded successfully');
+        }
+    }
+
+    let particlesCtx = null;
+    let particlesArray = [];
+    let animationFrameId = null;
+    let isTabVisible = true;
+
+    document.addEventListener('visibilitychange', () => {
+        isTabVisible = !document.hidden;
+        if (!isTabVisible && animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        } else if (isTabVisible && state.particlesActive) {
+            animateParticles();
+        }
+    });
+
+    function initIntroAnimation() {
+        if (!state.animationsActive) {
+            gsap.set(selectors.intro, { display: 'none' });
+            gsap.set(selectors.mainContent, { opacity: 1 });
+            return;
+        }
+
+        const tl = gsap.timeline({
+            onComplete: () => {
+                selectors.intro.style.display = 'none';
+            }
+        });
+
+        tl.set(selectors.intro, { display: 'flex' })
+          .from('.gift-body', { 
+              duration: 0.8, 
+              scale: 0, 
+              ease: 'back.out(1.7)' 
+          })
+          .from('.gift-ribbon-v, .gift-ribbon-h', { 
+              duration: 0.5, 
+              scaleY: 0, 
+              stagger: 0.1 
+          }, '-=0.4')
+          .from('.gift-bow', { 
+              duration: 0.5, 
+              scale: 0, 
+              rotation: 360, 
+              ease: 'back.out(1.7)' 
+          }, '-=0.2')
+          .to('.gift-lid', { 
+              duration: 1, 
+              rotationX: -120, 
+              y: -100, 
+              ease: 'power2.inOut', 
+              delay: 0.5 
+          })
+          .to('.gift-body, .gift-ribbon-v, .gift-ribbon-h, .gift-bow', { 
+              duration: 0.8, 
+              scale: 0, 
+              opacity: 0, 
+              ease: 'power2.in' 
+          }, '-=0.4')
+          .to(selectors.intro, { 
+              duration: 0.6, 
+              opacity: 0, 
+              ease: 'power2.inOut' 
+          }, '-=0.3')
+          .to(selectors.mainContent, { 
+              duration: 1, 
+              opacity: 1, 
+              ease: 'power2.out' 
+          }, '-=0.4');
+
+        createIntroSparkles();
+    }
+
+    function createIntroSparkles() {
+        const container = document.querySelector('.intro-sparkles');
+        if (!container) return;
+
+        for (let i = 0; i < 20; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.style.cssText = `
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: #fbbf24;
+                border-radius: 50%;
+                box-shadow: 0 0 10px #fbbf24;
+                left: ${50 + (Math.random() - 0.5) * 40}%;
+                top: ${50 + (Math.random() - 0.5) * 40}%;
+            `;
+            container.appendChild(sparkle);
+
+            if (state.animationsActive) {
+                gsap.to(sparkle, {
+                    duration: 1 + Math.random(),
+                    x: (Math.random() - 0.5) * 200,
+                    y: (Math.random() - 0.5) * 200,
+                    opacity: 0,
+                    scale: Math.random() * 2,
+                    delay: 1.5 + Math.random() * 0.5,
+                    ease: 'power2.out'
+                });
+            }
+        }
+    }
+
+    function initParticles() {
+        if (!selectors.particlesCanvas) return;
+
+        particlesCtx = selectors.particlesCanvas.getContext('2d');
+        resizeCanvas();
+
+        window.addEventListener('resize', resizeCanvas);
+
+        const particleCount = window.innerWidth < 768 ? 50 : 100;
+        
+        for (let i = 0; i < particleCount; i++) {
+            particlesArray.push(new Particle());
+        }
+
+        animateParticles();
+    }
+
+    function resizeCanvas() {
+        if (!selectors.particlesCanvas) return;
+        selectors.particlesCanvas.width = window.innerWidth;
+        selectors.particlesCanvas.height = window.innerHeight;
+    }
+
+    class Particle {
+        constructor() {
+            this.reset();
+            this.y = Math.random() * selectors.particlesCanvas.height;
+        }
+
+        reset() {
+            this.x = Math.random() * selectors.particlesCanvas.width;
+            this.y = -10;
+            this.size = Math.random() * 3 + 1;
+            this.speedY = Math.random() * 1 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.opacity = Math.random() * 0.5 + 0.3;
+            this.type = Math.random() > 0.7 ? 'star' : 'circle';
+        }
+
+        update() {
+            this.y += this.speedY;
+            this.x += this.speedX;
+
+            if (this.y > selectors.particlesCanvas.height) {
+                this.reset();
+            }
+
+            if (this.x < 0 || this.x > selectors.particlesCanvas.width) {
+                this.speedX *= -1;
+            }
+        }
+
+        draw() {
+            particlesCtx.save();
+            particlesCtx.globalAlpha = this.opacity;
+
+            if (this.type === 'star') {
+                particlesCtx.fillStyle = '#fbbf24';
+                particlesCtx.beginPath();
+                for (let i = 0; i < 5; i++) {
+                    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                    const x = this.x + Math.cos(angle) * this.size;
+                    const y = this.y + Math.sin(angle) * this.size;
+                    if (i === 0) particlesCtx.moveTo(x, y);
+                    else particlesCtx.lineTo(x, y);
+                }
+                particlesCtx.closePath();
+                particlesCtx.fill();
+            } else {
+                particlesCtx.fillStyle = '#e9d5ff';
+                particlesCtx.beginPath();
+                particlesCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                particlesCtx.fill();
+            }
+
+            particlesCtx.restore();
+        }
+    }
+
+    function animateParticles() {
+        if (!particlesCtx || !isTabVisible || !state.particlesActive) return;
+
+        particlesCtx.clearRect(0, 0, selectors.particlesCanvas.width, selectors.particlesCanvas.height);
+
+        particlesArray.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+
+        animationFrameId = requestAnimationFrame(animateParticles);
+    }
+
+    function initFloatingElements() {
+        if (!state.animationsActive) return;
+
+        selectors.floatingElements.forEach((element, index) => {
+            const isHeart = element.classList.contains('heart');
+            const duration = 15 + Math.random() * 10;
+            const delay = index * 2;
+
+            gsap.set(element, {
+                x: Math.random() * window.innerWidth,
+                y: window.innerHeight + 100,
+                rotation: Math.random() * 360
+            });
+
+            gsap.to(element, {
+                y: -200,
+                x: `+=${(Math.random() - 0.5) * 300}`,
+                rotation: `+=${Math.random() * 360}`,
+                duration: duration,
+                delay: delay,
+                ease: 'none',
+                repeat: -1,
+                repeatDelay: Math.random() * 5
+            });
+
+            if (isHeart) {
+                gsap.to(element, {
+                    scale: 1.2,
+                    duration: 2,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: 'power1.inOut'
+                });
+            }
+        });
+    }
+
+    // ===== UPDATED MUSIC TOGGLE (2:00 - 3:00 PORTION) =====
+    function initMusicToggle() {
+        if (!selectors.musicToggle || !selectors.bgMusic) return;
+
+        selectors.musicToggle.addEventListener('click', toggleMusic);
+
+        selectors.bgMusic.volume = 0;
+        selectors.bgMusic.dataset.startTime = 120; // 2:00 min
+        selectors.bgMusic.dataset.endTime = 180;   // 3:00 min
+    }
+
+    function toggleMusic() {
+        if (!selectors.bgMusic) return;
+
+        const startTime = parseFloat(selectors.bgMusic.dataset.startTime) || 0;
+        const endTime = parseFloat(selectors.bgMusic.dataset.endTime) || selectors.bgMusic.duration;
+
+        if (state.musicPlaying) {
+            gsap.to(selectors.bgMusic, {
+                volume: 0,
+                duration: 1,
+                onComplete: () => {
+                    selectors.bgMusic.pause();
+                }
+            });
+            selectors.musicToggle.classList.remove('playing');
+            selectors.musicToggle.setAttribute('aria-pressed', 'false');
+            if (selectors.musicStatus) selectors.musicStatus.textContent = 'Play Music';
+        } else {
+            selectors.bgMusic.currentTime = startTime;
+
+            selectors.bgMusic.play().then(() => {
+                gsap.to(selectors.bgMusic, {
+                    volume: 0.3,
+                    duration: 1
+                });
+
+                const checkInterval = setInterval(() => {
+                    if (selectors.bgMusic.currentTime >= endTime || selectors.bgMusic.paused) {
+                        gsap.to(selectors.bgMusic, {
+                            volume: 0,
+                            duration: 0.5,
+                            onComplete: () => {
+                                selectors.bgMusic.pause();
+                                clearInterval(checkInterval);
+                            }
+                        });
+                    }
+                }, 200);
+
+                selectors.musicToggle.classList.add('playing');
+                selectors.musicToggle.setAttribute('aria-pressed', 'true');
+                if (selectors.musicStatus) selectors.musicStatus.textContent = 'Pause Music';
+            }).catch(() => {
+                if (DEBUG) console.log('Music file not found - user should add assets/music.mp3');
+            });
+        }
+
+        state.musicPlaying = !state.musicPlaying;
+    }
+    // ===== END MUSIC UPDATE =====
+
+    function initCarousel() {
+        if (!selectors.carouselDots) return;
+
+        for (let i = 0; i < state.totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            dot.setAttribute('role', 'tab');
+            dot.setAttribute('aria-label', `Message ${i + 1}`);
+            dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            selectors.carouselDots.appendChild(dot);
+        }
+
+        if (selectors.carouselPrev) selectors.carouselPrev.addEventListener('click', prevSlide);
+        if (selectors.carouselNext) selectors.carouselNext.addEventListener('click', nextSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+    }
+
+    function goToSlide(index) {
+        if (index < 0 || index >= state.totalSlides) return;
+
+        const oldSlide = selectors.messageCards[state.currentSlide];
+        const newSlide = selectors.messageCards[index];
+        const dots = selectors.carouselDots.querySelectorAll('.carousel-dot');
+
+        if (state.animationsActive) {
+            gsap.to(oldSlide, {
+                opacity: 0,
+                x: index > state.currentSlide ? -50 : 50,
+                duration: 0.4,
+                onComplete: () => {
+                    oldSlide.classList.remove('active');
+                    gsap.set(oldSlide, { x: 0 });
+                }
+            });
+
+            gsap.fromTo(newSlide,
+                { opacity: 0, x: index > state.currentSlide ? 50 : -50 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.4,
+                    delay: 0.2,
+                    onStart: () => {
+                        newSlide.classList.add('active');
+                    }
+                }
+            );
+        } else {
+            oldSlide.classList.remove('active');
+            newSlide.classList.add('active');
+        }
+
+        dots[state.currentSlide].classList.remove('active');
+        dots[state.currentSlide].setAttribute('aria-selected', 'false');
+        dots[index].classList.add('active');
+        dots[index].setAttribute('aria-selected', 'true');
+
+        state.currentSlide = index;
+    }
+
+    function nextSlide() {
+        goToSlide((state.currentSlide + 1) % state.totalSlides);
+    }
+
+    function prevSlide() {
+        goToSlide((state.currentSlide - 1 + state.totalSlides) % state.totalSlides);
+    }
+
+    function initGame() {
+        if (!selectors.gameArea) return;
+
+        createBalloons();
+
+        if (selectors.gameReset) selectors.gameReset.addEventListener('click', resetGame);
+    }
+
+    function createBalloons() {
+        selectors.gameArea.innerHTML = '';
+        const colors = ['#ec4899', '#8b5cf6', '#fbbf24', '#f472b6', '#a78bfa'];
+        const balloonCount = window.innerWidth < 768 ? 8 : 12;
+
+        for (let i = 0; i < balloonCount; i++) {
+            const balloon = document.createElement('div');
+            balloon.classList.add('game-balloon');
+            balloon.innerHTML = `
+                <svg viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="30" cy="30" rx="20" ry="25" fill="${colors[i % colors.length]}"/>
+                    <path d="M30 55 L28 65 L30 70 L32 65 Z" fill="${colors[i % colors.length]}" opacity="0.7"/>
+                    <line x1="30" y1="70" x2="30" y2="80" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                </svg>
+            `;
+
+            const maxX = selectors.gameArea.offsetWidth - 60;
+            const maxY = selectors.gameArea.offsetHeight - 72;
+
+            balloon.style.left = Math.random() * maxX + 'px';
+            balloon.style.top = Math.random() * maxY + 'px';
+
+            balloon.addEventListener('click', () => popBalloon(balloon));
+
+            selectors.gameArea.appendChild(balloon);
+
+            if (state.animationsActive) {
+                gsap.to(balloon, {
+                    y: '-=20',
+                    duration: 2 + Math.random() * 2,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: 'power1.inOut'
+                });
+            }
+        }
+    }
+
+    function popBalloon(balloon) {
+        if (state.gameWon) return;
+
+        state.gameScore++;
+        selectors.gameScore.textContent = state.gameScore;
+
+        if (state.animationsActive) {
+            gsap.to(balloon, {
+                scale: 1.5,
+                opacity: 0,
+                duration: 0.3,
+                ease: 'power2.out',
+                onComplete: () => {
+                    balloon.remove();
+                    checkGameWin();
+                }
+            });
+        } else {
+            balloon.remove();
+            checkGameWin();
+        }
+    }
+
+    function checkGameWin() {
+        const remainingBalloons = selectors.gameArea.querySelectorAll('.game-balloon');
+        if (remainingBalloons.length === 0 && !state.gameWon) {
+            state.gameWon = true;
+            showWinMessage();
+        }
+    }
+
+    function showWinMessage() {
+        selectors.gameWin.textContent = '😏Arey Waah Apko toh ye bhi aata hai,Hppp!';
+        selectors.gameWin.classList.add('show');
+
+        if (state.animationsActive) {
+            gsap.from(selectors.gameWin, {
+                scale: 0,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'back.out(1.7)'
+            });
+        }
+    }
+
+    function resetGame() {
+        state.gameScore = 0;
+        state.gameWon = false;
+        selectors.gameScore.textContent = '0';
+        selectors.gameWin.classList.remove('show');
+        createBalloons();
+    }
+
+    function init() {
+        if (DEBUG) {
+            console.log('Initializing app...');
+            console.log('Animations active:', state.animationsActive);
+        }
+
+        initIntroAnimation();
+        initParticles();
+        initFloatingElements();
+        initMusicToggle();
+        initCarousel();
+        initGame();
+
+        if (DEBUG) {
+            console.log('App initialized successfully');
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+
+})();
+
+
+    </script>
 </body>
 </html>
